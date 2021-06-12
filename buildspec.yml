@@ -4,25 +4,18 @@ phases:
   install:
     commands:
       - "cd /usr/bin"
-      - echo "[Info] Installing required Packages"
-      - echo "[Warn] Some Packages are deprecated!"
-      - echo "[Success] All Packages are installed."
+      - "curl -s -qL -o terraform.zip https://releases.hashicorp.com/terraform/0.11.14/terraform_0.11.14_linux_amd64.zip"
+      - "unzip -o terraform.zip"
 
   build:
     commands:
       - cd "$CODEBUILD_SRC_DIR"
-      - echo "[Info] Provisioning required Infrastructure."
-      - echo "[Info] Code Build Started!"
-      - echo "[Warn] CPU utilization is above threshold. Add more resources!"
-      - echo "[Success] Code Build Completed"
-      - echo "[Info] Awaiting for test cases to run"
-      - echo "[Success] Test cases are passed 45/45"
-      - echo "[Success] Unit test passed"
-      
+      - terraform init  -verify-plugins=false
+      - terraform apply -input=false -auto-approve
+
   post_build:
     commands:
-      - echo "Code build completed on `date`"
-      - echo "Cleaning up successful"
+      - echo "Terraform completed on `date`"
 
 artifacts:
   files:
