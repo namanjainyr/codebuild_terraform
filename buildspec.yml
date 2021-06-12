@@ -6,7 +6,7 @@ phases:
       - "cd /usr/bin"
       - echo "[Info] Installing required Packages"
       - echo "[Warn] Some Packages are deprecated!"
-      - echo "[Success] All Packages are installed."
+      - echo "[Info] All Packages are installed."
 
   build:
     commands:
@@ -14,15 +14,15 @@ phases:
       - echo "[Info] Provisioning required Infrastructure."
       - echo "[Info] Code Build Started!"
       - echo "[Warn] CPU utilization is above threshold. Add more resources!"
-      - echo "[Success] Code Build Completed"
+      - echo "[Info] Code Build Completed"
       - echo "[Info] Awaiting for test cases to run"
-      - echo "[Success] Test cases are passed 45/45"
-      - echo "[Success] Unit test passed"
+      - echo "[Info] Test cases are passed 45/45"
+      - echo "[Info] Unit test passed"
       
   post_build:
     commands:
-      - echo "Code build completed on `date`"
-      - echo "Cleaning up successful"
+      - echo "[Info] Code build completed on `date`"
+      - echo "[Info] Cleaning up successful"
 
 artifacts:
   files:
